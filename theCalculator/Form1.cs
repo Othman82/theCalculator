@@ -11,7 +11,7 @@ using System.Windows.Forms;
 namespace theCalculator
 {
     public partial class Form1 : Form
-    {
+    {//A variable to hold the value stored in the calculator’s memory
         double memoryValue = 0.0;
         public Form1()
         {
@@ -62,27 +62,42 @@ namespace theCalculator
         {
             txtDisplay.AppendText("9");
         }
+        //this method displays "0" on the claculator textbox when clicked btn0
+        private void btn0_Click(object sender, EventArgs e)
+        {
+            txtDisplay.AppendText("0");
+        }
+        //this method displays "." 
+        private void btnDP_Click(object sender, EventArgs e)
+        {
+            txtDisplay.AppendText(".");
+        }
         //this method clears text dispaly box when clicked and displyas "0"
         private void btnClear_Click(object sender, EventArgs e)
         {
-            //txtDisplay.Clear();
-            txtDisplay.Text = ("0");
-            
+            txtDisplay.Text = ("0");  
         }
-
+        // When M+ is clicked the current contents of txtDisplay should be added to the storage space (i.e. variable). 
         private void btnMadd_Click(object sender, EventArgs e)
         {
             memoryValue += Convert.ToDouble(txtDisplay.Text);
         }
-
+        // When M+ is clicked the current contents of txtDisplay should be subtracted from the storage space. 
         private void btnMsub_Click(object sender, EventArgs e)
         {
             memoryValue -= Convert.ToDouble(txtDisplay.Text);
         }
-
+        //another assignment statement to reset the variable so it stores the value zero
         private void btnMclr_Click(object sender, EventArgs e)
         {
             memoryValue = 0.0;
         }
+        //button MR should take whatever value is currently stored in variable memoryValue and show it via the Text property of txtDisplay
+        private void btnMrec_Click(object sender, EventArgs e)
+        {
+            txtDisplay.Text = memoryValue.ToString();
+        }
+
+
     }
 }

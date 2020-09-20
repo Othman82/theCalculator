@@ -214,6 +214,7 @@
             this.btnDP.TabIndex = 14;
             this.btnDP.Text = "n";
             this.btnDP.UseVisualStyleBackColor = true;
+            this.btnDP.Click += new System.EventHandler(this.btnDP_Click);
             // 
             // btn0
             // 
@@ -224,6 +225,7 @@
             this.btn0.TabIndex = 15;
             this.btn0.Text = "0";
             this.btn0.UseVisualStyleBackColor = true;
+            this.btn0.Click += new System.EventHandler(this.btn0_Click);
             // 
             // btnMadd
             // 
@@ -259,6 +261,7 @@
             this.btnMrec.TabIndex = 18;
             this.btnMrec.Text = "MR";
             this.btnMrec.UseVisualStyleBackColor = false;
+            this.btnMrec.Click += new System.EventHandler(this.btnMrec_Click);
             // 
             // btnMclr
             // 
