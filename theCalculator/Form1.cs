@@ -18,9 +18,18 @@ namespace theCalculator
             InitializeComponent();
         }
         //this method displays "1" on the claculator textbox when clicked btn1
-        private void btn1_Click(object sender, EventArgs e)
+        private void btn_Click(object sender, EventArgs e)
         {
-            txtDisplay.AppendText("1");
+            Button button = (Button)sender;
+            string digit = button.Text;
+            if (txtDisplay.Text=="0")
+            {
+                txtDisplay.Text = digit;
+            }
+            else
+            {
+                txtDisplay.AppendText(digit);
+            }
         }
         //this method displays "2" on the claculator textbox when clicked btn2
         private void btn2_Click(object sender, EventArgs e)
