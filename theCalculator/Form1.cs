@@ -17,7 +17,7 @@ namespace theCalculator
         {
             InitializeComponent();
         }
-        //this method displays "1" on the claculator textbox when clicked btn1
+        //all the numeric buttons now is using the same event handler (btn_click)
         private void btn_Click(object sender, EventArgs e)
         {
             Button button = (Button)sender;
@@ -31,51 +31,7 @@ namespace theCalculator
                 txtDisplay.AppendText(digit);
             }
         }
-        //this method displays "2" on the claculator textbox when clicked btn2
-        private void btn2_Click(object sender, EventArgs e)
-        {
-            txtDisplay.AppendText("2");
-        }
-        //this method displays "3" on the claculator textbox when clicked btn3
-        private void btn3_Click(object sender, EventArgs e)
-        {
-            txtDisplay.AppendText("3");
-        }
-        //this method displays "4" on the claculator textbox when clicked btn4
-        private void btn4_Click(object sender, EventArgs e)
-        {
-            txtDisplay.AppendText("4");
-        }
-        //this method displays "5" on the claculator textbox when clicked btn5
-        private void btn5_Click(object sender, EventArgs e)
-        {
-            txtDisplay.AppendText("5");
-        }
-        //this method displays "6" on the claculator textbox when clicked btn6
-        private void btn6_Click(object sender, EventArgs e)
-        {
-            txtDisplay.AppendText("6");
-        }
-        //this method displays "7" on the claculator textbox when clicked btn7
-        private void btn7_Click(object sender, EventArgs e)
-        {
-            txtDisplay.AppendText("7");
-        }
-        //this method displays "8" on the claculator textbox when clicked btn8
-        private void btn8_Click(object sender, EventArgs e)
-        {
-            txtDisplay.AppendText("8");
-        }
-        //this method displays "9" on the claculator textbox when clicked btn9
-        private void btn9_Click(object sender, EventArgs e)
-        {
-            txtDisplay.AppendText("9");
-        }
-        //this method displays "0" on the claculator textbox when clicked btn0
-        private void btn0_Click(object sender, EventArgs e)
-        {
-            txtDisplay.AppendText("0");
-        }
+
         //this method displays "." 
         private void btnDP_Click(object sender, EventArgs e)
         {

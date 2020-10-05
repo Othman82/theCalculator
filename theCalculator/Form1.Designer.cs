@@ -225,7 +225,7 @@
             this.btn0.TabIndex = 15;
             this.btn0.Text = "0";
             this.btn0.UseVisualStyleBackColor = true;
-            this.btn0.Click += new System.EventHandler(this.btn0_Click);
+            this.btn0.Click += new System.EventHandler(this.btn_Click);
             // 
             // btnMadd
             // 
