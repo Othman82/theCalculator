@@ -13,6 +13,7 @@ namespace theCalculator
     public partial class Form1 : Form
     {//A variable to hold the value stored in the calculator’s memory
         double memoryValue = 0.0;
+        bool clearDisplay = true;
         public Form1()
         {
             InitializeComponent();
@@ -22,9 +23,10 @@ namespace theCalculator
         {
             Button button = (Button)sender;
             string digit = button.Text;
-            if (txtDisplay.Text=="0")
+            if (clearDisplay)
             {
                 txtDisplay.Text = digit;
+                clearDisplay = false;
             }
             else
             {
