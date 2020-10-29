@@ -75,7 +75,7 @@
             this.btn1.TabIndex = 1;
             this.btn1.Text = "1";
             this.btn1.UseVisualStyleBackColor = true;
-            this.btn1.Click += new System.EventHandler(this.btn_Click); 
+            this.btn1.Click += new System.EventHandler(this.btn_Click);
             // 
             // btn6
             // 
@@ -204,6 +204,7 @@
             this.btnAdd.TabIndex = 13;
             this.btnAdd.Text = "+";
             this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // btnDP
             // 
@@ -317,6 +318,7 @@
             this.btnEquals.TabIndex = 23;
             this.btnEquals.Text = "=";
             this.btnEquals.UseVisualStyleBackColor = true;
+            this.btnEquals.Click += new System.EventHandler(this.btnEquals_Click);
             // 
             // Form1
             // 
