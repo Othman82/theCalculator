@@ -99,6 +99,7 @@ namespace theCalculator
             {
                 //store display value 
                 currentAnswer = Convert.ToDouble(txtDisplay.Text);
+
                 //next number is no longer the first
                 isFirstValue = false;
             }
@@ -143,8 +144,8 @@ namespace theCalculator
             {
                 lastValueEntered = Convert.ToDouble(txtDisplay.Text);
             }
-            else
-            {
+            
+            
                 switch (lastOp)
                 {
                     case '+':
@@ -162,15 +163,148 @@ namespace theCalculator
 
                 }
 
-
-
-            }
+            
 
             isAfterEqual = true;
             clearDisplay = true;
             isFirstValue = true;
             btnDP.Enabled = true;
             txtDisplay.Text = currentAnswer.ToString();
+        }
+
+        private void btnSub_Click(object sender, EventArgs e)
+        {
+            if (isFirstValue)
+            {
+                //store display value 
+                currentAnswer = Convert.ToDouble(txtDisplay.Text);
+
+                //next number is no longer the first
+                isFirstValue = false;
+            }
+
+            //process outstanding calculation
+            else
+            {
+                lastValueEntered = Convert.ToDouble(txtDisplay.Text);
+
+                switch (lastOp)
+                {
+                    case '+':
+                        currentAnswer += lastValueEntered;
+                        break;
+
+                    case '-':
+                        currentAnswer -= lastValueEntered;
+                        break;
+
+                    case '*':
+                        currentAnswer *= lastValueEntered;
+                        break;
+
+                    case '/':
+                        currentAnswer /= lastValueEntered;
+                        break;
+
+                }
+            }
+
+            lastOp = '-'; //update last math function to add
+            isAfterEqual = false; // operation is not requested immidatly after "=" has been pressed
+            clearDisplay = true; // reset display if number is pressed
+            btnDP.Enabled = true; // re enable decimal point btn
+            txtDisplay.Text = currentAnswer.ToString(); //show result of calculation
+
+        }
+
+        private void btnMult_Click(object sender, EventArgs e)
+        {
+            if (isFirstValue)
+            {
+                //store display value 
+                currentAnswer = Convert.ToDouble(txtDisplay.Text);
+
+                //next number is no longer the first
+                isFirstValue = false;
+            }
+
+            //process outstanding calculation
+            else
+            {
+                lastValueEntered = Convert.ToDouble(txtDisplay.Text);
+
+                switch (lastOp)
+                {
+                    case '+':
+                        currentAnswer += lastValueEntered;
+                        break;
+
+                    case '-':
+                        currentAnswer -= lastValueEntered;
+                        break;
+
+                    case '*':
+                        currentAnswer *= lastValueEntered;
+                        break;
+
+                    case '/':
+                        currentAnswer /= lastValueEntered;
+                        break;
+
+                }
+            }
+
+            lastOp = '*'; //update last math function to add
+            isAfterEqual = false; // operation is not requested immidatly after "=" has been pressed
+            clearDisplay = true; // reset display if number is pressed
+            btnDP.Enabled = true; // re enable decimal point btn
+            txtDisplay.Text = currentAnswer.ToString(); //show result of calculation
+
+        }
+
+        private void btnDiv_Click(object sender, EventArgs e)
+        {
+            if (isFirstValue)
+            {
+                //store display value 
+                currentAnswer = Convert.ToDouble(txtDisplay.Text);
+
+                //next number is no longer the first
+                isFirstValue = false;
+            }
+
+            //process outstanding calculation
+            else
+            {
+                lastValueEntered = Convert.ToDouble(txtDisplay.Text);
+
+                switch (lastOp)
+                {
+                   case '+':
+                        currentAnswer += lastValueEntered;
+                        break;
+
+                    case '-':
+                        currentAnswer -= lastValueEntered;
+                        break;
+
+                   case '*':
+                        currentAnswer *= lastValueEntered;
+                        break;
+
+                    case '/':
+                        currentAnswer /= lastValueEntered;
+                        break;
+
+                }
+            }
+
+            lastOp = '/'; //update last math function to add
+            isAfterEqual = false; // operation is not requested immidatly after "=" has been pressed
+            clearDisplay = true; // reset display if number is pressed
+            btnDP.Enabled = true; // re enable decimal point btn
+            txtDisplay.Text = currentAnswer.ToString(); //show result of calculation
+
         }
     }
 }
