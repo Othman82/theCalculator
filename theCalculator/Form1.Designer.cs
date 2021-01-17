@@ -61,6 +61,7 @@
             this.txtDisplay.ForeColor = System.Drawing.Color.Aquamarine;
             this.txtDisplay.Location = new System.Drawing.Point(22, 22);
             this.txtDisplay.Name = "txtDisplay";
+            this.txtDisplay.ReadOnly = true;
             this.txtDisplay.Size = new System.Drawing.Size(440, 38);
             this.txtDisplay.TabIndex = 0;
             this.txtDisplay.Text = "0";
@@ -301,6 +302,7 @@
             this.btnSign.TabIndex = 21;
             this.btnSign.Text = "+/-";
             this.btnSign.UseVisualStyleBackColor = false;
+            this.btnSign.Click += new System.EventHandler(this.btnSign_Click);
             // 
             // btnBksp
             // 
@@ -311,6 +313,7 @@
             this.btnBksp.TabIndex = 22;
             this.btnBksp.Text = "f";
             this.btnBksp.UseVisualStyleBackColor = true;
+            this.btnBksp.Click += new System.EventHandler(this.btnBksp_Click);
             // 
             // btnEquals
             // 
@@ -352,8 +355,10 @@
             this.Controls.Add(this.btn6);
             this.Controls.Add(this.btn1);
             this.Controls.Add(this.txtDisplay);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.MinimizeBox = false;
             this.Name = "Form1";
-            this.Text = "Form1";
+            this.Text = "Calculator";
             this.ResumeLayout(false);
             this.PerformLayout();
 

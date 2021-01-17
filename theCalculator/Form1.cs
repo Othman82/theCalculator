@@ -49,7 +49,11 @@ namespace theCalculator
             }
             else
             {
-                txtDisplay.AppendText(digit);
+                if (txtDisplay.Text.Length < 26)
+                {
+                    txtDisplay.AppendText(digit);
+                }
+                
             }
         }
         //In similar fashion the Dp has been modified to handle the clearDisplay variable
@@ -63,7 +67,10 @@ namespace theCalculator
             else
             {
                 txtDisplay.AppendText(".");
-            }          
+            }
+
+            btnDP.Enabled = false;
+
         }
         //this method clears text dispaly box when clicked and displyas "0"
         private void btnClear_Click(object sender, EventArgs e)
@@ -93,14 +100,16 @@ namespace theCalculator
             txtDisplay.Text = memoryValue.ToString();
         }
 
-        private void btnAdd_Click(object sender, EventArgs e)
+
+        private void btnOp()
         {
+            //tracks whethere the number being entered is first in a new calculation.
             if (isFirstValue)
             {
                 //store display value 
                 currentAnswer = Convert.ToDouble(txtDisplay.Text);
 
-                //next number is no longer the first
+                //tracks wethere an operation is being requested immediately after "=" was pressed.
                 isFirstValue = false;
             }
 
@@ -112,45 +121,71 @@ namespace theCalculator
                 switch (lastOp)
                 {
                     case '+':
-                        currentAnswer += lastValueEntered;
+                        //currentAnswer tracks the value of the calculation 'so far'
+                        //lastValueEntered tracks the value of the last number entered
+
+                        currentAnswer += lastValueEntered; //perform addition when + is pressed
                         break;
 
                     case '-':
-                        currentAnswer -= lastValueEntered;
+                        currentAnswer -= lastValueEntered;  //perform subtraction when - is pressed
                         break;
 
                     case '*':
-                        currentAnswer *= lastValueEntered;
+                        currentAnswer *= lastValueEntered;  //perform Multiplication when * is pressed
                         break;
 
                     case '/':
-                        currentAnswer /= lastValueEntered;
+                        currentAnswer /= lastValueEntered;  //perform division when / is pressed
                         break;
 
                 }
             }
 
-            lastOp = '+'; //update last math function to add
             isAfterEqual = false; // operation is not requested immidatly after "=" has been pressed
             clearDisplay = true; // reset display if number is pressed
             btnDP.Enabled = true; // re enable decimal point btn
             txtDisplay.Text = currentAnswer.ToString(); //show result of calculation
-
+        }
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            btnOp();
+            lastOp = '+';  //update last math function to add
+        }
+        private void btnSub_Click(object sender, EventArgs e)
+        {
+            btnOp();
+            lastOp = '-'; //update last math function to subtract
+        }
+        private void btnMult_Click(object sender, EventArgs e)
+        {
+            btnOp();
+            lastOp = '*'; //update last math function to multiply
+        }
+        private void btnDiv_Click(object sender, EventArgs e)
+        {
+            btnOp();
+            lastOp = '/'; // update last math fucntion to divide
         }
 
         private void btnEquals_Click(object sender, EventArgs e)
         {
+            // change to fasle if operation is not requested immidatly after "=" has been pressed
             if (isAfterEqual == false)
             {
+                ////lastValueEntered tracks the value of the last number entered
                 lastValueEntered = Convert.ToDouble(txtDisplay.Text);
             }
             
             
                 switch (lastOp)
                 {
+//currentAnswer tracks the value of the calculation 'so far'
+//lastValueEntered tracks the value of the last number entered                   
                     case '+':
-                        currentAnswer += lastValueEntered;
-                        break;
+                        currentAnswer += lastValueEntered;                         
+                                                                                 
+                    break;
                     case '-':
                         currentAnswer -= lastValueEntered;
                         break;
@@ -164,147 +199,38 @@ namespace theCalculator
                 }
 
             
-
+            //reset status variable
             isAfterEqual = true;
             clearDisplay = true;
             isFirstValue = true;
-            btnDP.Enabled = true;
+           // btnDP.Enabled = true;
             txtDisplay.Text = currentAnswer.ToString();
         }
 
-        private void btnSub_Click(object sender, EventArgs e)
+
+
+        private void btnSign_Click(object sender, EventArgs e)
         {
-            if (isFirstValue)
+            //this should reverse the polarity of whatever number currently occupies the display panel, except if it is “0”. 
+            if (!txtDisplay.Text.Contains('-'))
             {
-                //store display value 
-                currentAnswer = Convert.ToDouble(txtDisplay.Text);
-
-                //next number is no longer the first
-                isFirstValue = false;
+                txtDisplay.Text = "-" + txtDisplay.Text;
             }
-
-            //process outstanding calculation
             else
             {
-                lastValueEntered = Convert.ToDouble(txtDisplay.Text);
-
-                switch (lastOp)
-                {
-                    case '+':
-                        currentAnswer += lastValueEntered;
-                        break;
-
-                    case '-':
-                        currentAnswer -= lastValueEntered;
-                        break;
-
-                    case '*':
-                        currentAnswer *= lastValueEntered;
-                        break;
-
-                    case '/':
-                        currentAnswer /= lastValueEntered;
-                        break;
-
-                }
+                txtDisplay.Text = txtDisplay.Text.Trim('-');
             }
-
-            lastOp = '-'; //update last math function to add
-            isAfterEqual = false; // operation is not requested immidatly after "=" has been pressed
-            clearDisplay = true; // reset display if number is pressed
-            btnDP.Enabled = true; // re enable decimal point btn
-            txtDisplay.Text = currentAnswer.ToString(); //show result of calculation
-
         }
-
-        private void btnMult_Click(object sender, EventArgs e)
+        
+        //the backspace btn will reduce the numbers currently on display to zero when keep pressed 
+        private void btnBksp_Click(object sender, EventArgs e)
         {
-            if (isFirstValue)
+            if (txtDisplay.Text.Length == 1)
             {
-                //store display value 
-                currentAnswer = Convert.ToDouble(txtDisplay.Text);
-
-                //next number is no longer the first
-                isFirstValue = false;
+                txtDisplay.Text = "0";
             }
-
-            //process outstanding calculation
             else
-            {
-                lastValueEntered = Convert.ToDouble(txtDisplay.Text);
-
-                switch (lastOp)
-                {
-                    case '+':
-                        currentAnswer += lastValueEntered;
-                        break;
-
-                    case '-':
-                        currentAnswer -= lastValueEntered;
-                        break;
-
-                    case '*':
-                        currentAnswer *= lastValueEntered;
-                        break;
-
-                    case '/':
-                        currentAnswer /= lastValueEntered;
-                        break;
-
-                }
-            }
-
-            lastOp = '*'; //update last math function to add
-            isAfterEqual = false; // operation is not requested immidatly after "=" has been pressed
-            clearDisplay = true; // reset display if number is pressed
-            btnDP.Enabled = true; // re enable decimal point btn
-            txtDisplay.Text = currentAnswer.ToString(); //show result of calculation
-
-        }
-
-        private void btnDiv_Click(object sender, EventArgs e)
-        {
-            if (isFirstValue)
-            {
-                //store display value 
-                currentAnswer = Convert.ToDouble(txtDisplay.Text);
-
-                //next number is no longer the first
-                isFirstValue = false;
-            }
-
-            //process outstanding calculation
-            else
-            {
-                lastValueEntered = Convert.ToDouble(txtDisplay.Text);
-
-                switch (lastOp)
-                {
-                   case '+':
-                        currentAnswer += lastValueEntered;
-                        break;
-
-                    case '-':
-                        currentAnswer -= lastValueEntered;
-                        break;
-
-                   case '*':
-                        currentAnswer *= lastValueEntered;
-                        break;
-
-                    case '/':
-                        currentAnswer /= lastValueEntered;
-                        break;
-
-                }
-            }
-
-            lastOp = '/'; //update last math function to add
-            isAfterEqual = false; // operation is not requested immidatly after "=" has been pressed
-            clearDisplay = true; // reset display if number is pressed
-            btnDP.Enabled = true; // re enable decimal point btn
-            txtDisplay.Text = currentAnswer.ToString(); //show result of calculation
-
+                txtDisplay.Text = txtDisplay.Text.Substring(0, txtDisplay.Text.Length - 1);
         }
     }
 }
